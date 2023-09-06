@@ -93,3 +93,51 @@ st.markdown("\
 
 
 st.subheader('Slider')
+
+age = st.slider('How old are you?',0, 100, 25 )
+#最小, 最大, デフォルト値
+st.write("I'm", age, "years old", ":sunglasses:")
+
+
+
+#範囲スライダー
+st.subheader('Range Slider')
+airis = st.slider(
+    'Select a range of values',
+    0, 100, (25, 75))
+st.write('Values', airis)
+
+
+#時間範囲スライダー
+st.subheader('Range Time slider')
+
+itu = st.slider(
+    "Schedule your appointment:",
+    value=(time(11,30), time(12,45)))
+st.write("You are scheduled for:", itu)
+
+
+#日時スライダー
+st.subheader('Datetime slider')
+
+itus_start = st.slider(
+    "When do you start?",
+    value=datetime(2023,1,1,0,0),
+    format="YY/MM/DD - hh:mm")
+st.write("Sart Time :",itus_start )
+
+
+
+st.write('-----------------------------')
+
+#9日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 9]''')
+
+st.markdown(''':gray[st.line_chart]''')
+
+
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
