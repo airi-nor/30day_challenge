@@ -3,21 +3,43 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 import numpy as np 
+from datetime import time, datetime
 
 #3日目チャレンジ
 
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
 
-st.header('st.button/ Day 3')
+st.markdown(''':rainbow[Day 3]''')
+st.markdown(''':gray[st.button]''')
+
+
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
 if st.button('Say Hello'):
     st.write('Well hello governor')
 else:
     st.write('Good bye')
 
+
+
+
+
 st.write('-----------------------------')
 
 #5日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
 
-st.header('st.write / Day 5')
+st.markdown(''':rainbow[Day 5]''')
+
+st.markdown(''':gray[st.write]''')
+
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+
 
 st.header('Display text:')
 #テキスト・マークダウン形式のテキスト表示
@@ -54,7 +76,20 @@ airichart = alt.Chart(airi2).mark_circle().encode(
 st.write(airichart)
 
 
+
+
 st.write('-----------------------------')
 
+#8日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 8]''')
+
+st.markdown(''':gray[st.slider]''')
 
 
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+
+st.subheader('Slider')
