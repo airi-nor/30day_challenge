@@ -7,7 +7,7 @@ import numpy as np
 import time
 from datetime import time as dt_time, datetime
 
-from streamlit_chat import message
+# from streamlit_chat import message
 
 
 st.set_page_config(layout="wide")
@@ -244,18 +244,18 @@ if Cola:
 
 
 st.write('-----------------------------')
-#14日目
-st.markdown("\
-            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
-st.markdown(''':rainbow[Day 14]''')
-st.markdown(''':gray[コンポーネント]''')
-st.markdown("\
-            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+# #14日目
+# st.markdown("\
+#             :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+# st.markdown(''':rainbow[Day 14]''')
+# st.markdown(''':gray[コンポーネント]''')
+# st.markdown("\
+#             :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
 
-message("Hej tis") 
-message("Halløj diller!", is_user=True)
+# message("Hej tis") 
+# message("Halløj diller!", is_user=True)
 
-st.write('-----------------------------')
+# st.write('-----------------------------')
 
 #15日目
 st.markdown("\
