@@ -17,6 +17,9 @@ st.markdown(''':gray[st.button]''')
 st.markdown("\
             :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
 
+
+col1, col2 = st.columns(2)
+
 if st.button('Say Hello'):
     st.write('Well hello governor')
 else:
@@ -134,10 +137,102 @@ st.write('-----------------------------')
 st.markdown("\
             :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
 st.markdown(''':rainbow[Day 9]''')
-
 st.markdown(''':gray[st.line_chart]''')
-
-
 st.markdown("\
             :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+#構築内容
+#1.NumPyでランダムに生成された数値からPandasのDataFrameを作成する
+#2.st.line_chart()コマンドで折れ線グラフを作成して表示する
+
+
+st.header('Line Chart')
+
+#3つの列を含むランダムに生成された数値のDataFrameを作成
+chart_no_date = pd.DataFrame(
+    np.random.randn(20,3),
+    columns=['blue', 'light blue', 'red'])
+    #最後に、chart_data変数に格納されたDataFrameを入力データとして、
+    # st.line_chart()を使って折れ線グラフを作成します
+st.line_chart(chart_no_date)
+#20行3列のランダムなデータを生成
+
+
+st.write('-----------------------------')
+
+
+#10日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 10]''')
+st.markdown(''':gray[st.selectbox]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+
+#ユーザーが色を選択します
+#アプリから選択された色が出力されます
+
+st.header('st.selectbox')
+
+choisu = st.selectbox(
+    'What is your favourite desert?', 
+    ('Choucream', 'Cake', 'Fluits'))
+
+st.write('Your favourite desert is', choisu)
+
+st.write('-----------------------------')
+
+#11日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 11]''')
+st.markdown(''':gray[st.multiselect]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+
+st.header('st.multiselect')
+
+choices = st.multiselect(
+    'What is your favourite fruits?',
+    ['Apple', 'Kiwi', 'Orange', 'Grape', 'Pineapple'],
+    #default
+    ['Kiwi', 'Pineapple']
+)
+st.write('You like', choices)
+
+
+
+st.write('-----------------------------')
+#12日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 12]''')
+st.markdown(''':gray[st.checkbox]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+
+st.header('st.checkbox')
+
+st.write('What would you like to order?')
+
+incecream = st.checkbox('Icecream')
+Choucream = st.checkbox('Choucream')
+Coffee = st.checkbox('Coffee')
+Cola = st.checkbox('Cola')
+
+if incecream:
+    st.write("Great! Here's some more! 	:icecream:")
+
+if Choucream:
+    st.write('Okay, here is your choucream :honey_pot:')
+
+if Coffee:
+    st.write('There you go :tea:')
+
+if Cola:
+    st.write('COCA COLA :tropical_drink:')
+
 
