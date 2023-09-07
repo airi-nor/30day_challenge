@@ -451,10 +451,10 @@ with st.form('my_form'):
     st.subheader('**Tilpas og bestil din doughnut**')
     which_donut_val = st.selectbox('Typer af donuts', 
     ['Old fashion', 'Fluff', 'Pon de ring', 'Mini balls'])
-    sauce_val = st.selectbox('Græsse', 
+    sauce_val = st.selectbox('Graze', 
     ['chokolade', 'hvid chokolade', 'Jordbær', 'Honning'])
-    topping_val = st.selectbox('Noget pålæg?', 
-    ['Drys', 'Oreo', 'Crunsh', 'Nødder'])
+    topping_val = st.selectbox('Drys?', 
+    ['Tivoli drys', 'Oreo', 'Crunsh', 'Nødder'])
     serving_type_val = st.selectbox('Varm eller kold',
     ['Varm donuts op', 'Kold'])
     owncup_val = custom_checkbox('Jeg tager min donutpose med')
@@ -465,7 +465,7 @@ if submitted:
     st.markdown(f'''
     You have orderd :doughnut::orange_heart:  :
     - Doughnut: `{which_donut_val}`
-    - Græsse: `{sauce_val}`
+    - Graze: `{sauce_val}`
     - Toppings: `{topping_val}`
     - Serveringstype:`{serving_type_val}`
     - Bring own bag: `{owncup_val}`
