@@ -2,9 +2,15 @@ import streamlit as st
 import altair as alt
 import pandas as pd
 import streamlit as st
-import numpy as np 
-from datetime import time, datetime
 
+import numpy as np 
+import time
+from datetime import time as dt_time, datetime
+
+from streamlit_chat import message
+
+
+st.set_page_config(layout="wide")
 #3日目チャレンジ
 
 st.markdown("\
@@ -116,7 +122,7 @@ st.subheader('Range Time slider')
 
 itu = st.slider(
     "Schedule your appointment:",
-    value=(time(11,30), time(12,45)))
+    value=(dt_time(11,30), dt_time(12,45)))
 st.write("You are scheduled for:", itu)
 
 
@@ -227,12 +233,251 @@ if incecream:
     st.write("Great! Here's some more! 	:icecream:")
 
 if Choucream:
-    st.write('Okay, here is your choucream :honey_pot:')
+    st.write('Okay, here is your chou à la crème :honey_pot:')
 
 if Coffee:
-    st.write('There you go :tea:')
+    st.write('There you go but it`s tea :tea:')
 
 if Cola:
     st.write('COCA COLA :tropical_drink:')
 
 
+
+st.write('-----------------------------')
+#14日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 14]''')
+st.markdown(''':gray[コンポーネント]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+message("Hej tis") 
+message("Halløj diller!", is_user=True)
+
+st.write('-----------------------------')
+
+#15日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 15]''')
+st.markdown(''':gray[st.latex]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+
+#st.latexは、LaTeX形式の数式を表示します。
+st.header('st.latex')
+
+
+st.latex(r'''
+    a + ar + a r^2 + a r^3 + \cdots + a r^{n-1}=
+    \sum_{k=0}^{n-1} ar^k=
+    a \left(\frac{1-r^{n}}{1-r}\right)
+    ''')
+
+st.write('-----------------------------')
+#16日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 16]''')
+st.markdown(''':gray[Custmizing the theme]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+st.title('Customizing the themeof Streamlit apps')
+st.write('Contents of the `.streamlit/config.toml` file of this app')
+
+#config.tomlファイルに記載
+st.code("""
+[theme]
+primaryColor="#F0DBDB"
+backgroundColor="#2E86C1"
+secondaryBackgroundColor="#AED6F1"
+textColor="#FFFFFF"
+font="monospace"
+""")
+number = st.sidebar.slider('Select a number:', 0,10,5)
+st.write('Selected number from slider widget is :', number)
+
+
+# #17日目
+# st.markdown("\
+#             :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+# st.markdown(''':rainbow[Day 17]''')
+# st.markdown(''':gray[st.secrets]''')
+# st.markdown("\
+#             :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+# st.title('st.secrets')
+# st.write(st.secrets['message'])
+
+
+
+st.write('-----------------------------')
+#18日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 18]''')
+st.markdown(''':gray[st.file_uploader]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+st.title('st.file_uploader')
+st.subheader('Input CSV')
+uploaded_sareta = st.file_uploader("Choose a file")
+
+if uploaded_sareta is not None:
+    df = pd.read_csv(uploaded_sareta)
+    st.subheader('Dataframe')
+    st.write(df)
+    st.subheader('Descriptive Statistics')
+    st.write(df.describe())
+else:
+    st.info(':rainbow: Upload a CSV file')
+
+st.write('-----------------------------')
+#19日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 19]''')
+st.markdown(''':gray[アプリをレイアウト]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+
+
+# st.set_page_config(layout="wide")
+st.title('How to layout your Steramlit app')
+
+with st.expander('About this app'):
+    st.write('This app shows the various ways on how you can layout your Streamlit app.')
+    st.image('https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png', width=250)
+
+st.sidebar.header('Input')
+user_name = st.sidebar.text_input('What is your name?')
+user_emoji = st.sidebar.selectbox('Choose an emoji', 
+['','😆','😊','😍','😴','😕','😱'])
+user_food = st.sidebar.selectbox('What is your favourite food?',
+['', 'Pizza', 'Burger', 'Yakiniku', 'Burrito'])
+st.write(f"{user_name},")
+st.write(f"Today, you look like: {user_emoji}")
+st.write(f"And I know you like: {user_food}")
+
+#st.columnsコマンドを使用して、
+#col1、col2、col3に対応する3つの列を作成します。
+st.header('Output')
+
+# withステートメントで始まる個々のコードブロックを作成し、 
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    if user_name != '':
+        st.write(f'Hey {user_name}! :smile:')
+    else:
+        st.write(':orange_heart: Please enter your **name**!')
+
+with col2:
+    if user_emoji !='': 
+        st.write(f'{user_emoji} is your **emoji**!')
+    else:
+        st.write(':orange_heart: Please choose an **emoji**!')
+
+with col3:
+    if user_food != '':
+        st.write(f'**{user_food}** :stuffed_flatbread: is your favourite **food**!')
+    else:
+        st.write(':orange_heart: Please choose your favourite **food**!')
+
+#f文字列を使用して、定型テキストとユーザーが指定した値を
+# 組み合わせている点にも注目してください。
+
+st.write('-----------------------------')
+#21日目
+# st.markdown("\
+#             :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+# st.markdown(''':rainbow[Day 21]''')
+# st.markdown(''':gray[st.progress]''')
+# st.markdown("\
+#             :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+# st.title('st.progress')
+
+
+# with st.expander('About this thingie'):
+#     st.write('You can now display the progress of your calculation in a Streamlit app with the `st.progress` command.')
+
+# #進行状況バーを定義し、開始値を0としてインスタンス化します。
+# # 次に、forループで0から100に達するまで反復します
+# my_bar = st.progress(0)
+# progress_placeholder = st.empty()
+
+# #各反復でtime.sleep(0.05)を使用して
+# #アプリがmy_bar進行状況バーに値1を追加する前に0.05待機する
+
+# for percent_complete in range(100):
+#     time.sleep(0.3)
+#     my_bar.progress(percent_complete +1)
+# st.balloons()
+
+
+#バーのグラフィック表示が反復ごとに増加するようにします。
+
+
+st.write('-----------------------------')
+#22日目
+
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 22]''')
+st.markdown(''':gray[st.form]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.title('st.form')
+st.header('1.Example of using `with` notation')
+st.subheader('Donuts butik :doughnut:')
+
+#st.formコマンドをwith表記で適用します。
+#フォーム内でサブヘッダーOrder your coffeeを記述
+
+
+def custom_checkbox(label):
+    if st.checkbox(label, key=f'{label}_checkbox'):
+        return 'Ja'
+    else:
+        return 'Nej'
+
+with st.form('my_form'):
+    st.subheader('**Tilpas og bestil din doughnut**')
+    which_donut_val = st.selectbox('Typer af donuts', 
+    ['Old fashion', 'Fluff', 'Pon de ring', 'Mini balls'])
+    sauce_val = st.selectbox('Græsse', 
+    ['chokolade', 'hvid chokolade', 'Jordbær', 'Honning'])
+    topping_val = st.selectbox('Noget pålæg?', 
+    ['Drys', 'Oreo', 'Crunsh', 'Nødder'])
+    serving_type_val = st.selectbox('Varm eller kold',
+    ['Varm donuts op', 'Kold'])
+    owncup_val = custom_checkbox('Jeg tager min donutpose med')
+    submitted = st.form_submit_button('Submit')
+#これをクリックすると、すべてのユーザー入力が1つのバッチ情報としてアプリに送信され、処理されます
+
+if submitted:
+    st.markdown(f'''
+    You have orderd :doughnut::orange_heart:  :
+    - Doughnut: `{which_donut_val}`
+    - Græsse: `{sauce_val}`
+    - Toppings: `{topping_val}`
+    - Serveringstype:`{serving_type_val}`
+    - Bring own bag: `{owncup_val}`
+    - Tak for din ordre!:orange_heart:
+    ''')
+else:st.write('Place your order and have some goodies!:doughnut:')
+
+
+st.header('2. Example of object notation')
+
+form = st.form('my_form2')
+selected_val = form.slider('Select a value')
+form.form_submit_button('Submit')
+
+st.write('Selected Value', selected_val)
