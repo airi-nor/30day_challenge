@@ -2,9 +2,9 @@ import streamlit as st
 import altair as alt
 import pandas as pd
 import streamlit as st
-
+import requests
 import numpy as np 
-import time
+from time import time
 from datetime import time as dt_time, datetime
 
 # from streamlit_chat import message
@@ -481,3 +481,206 @@ selected_val = form.slider('Select a value')
 form.form_submit_button('Submit')
 
 st.write('Selected Value', selected_val)
+
+
+st.write('-----------------------------')
+#23日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 23]''')
+st.markdown(''':gray[st.experimental_get_query_params]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+st.title('st.ecperimental_get_query_params')
+
+with st.expander('About this app'):
+    st.write("`st.experimental_get_query_params` allows the retrieval of query parameters directly from the URL of the user's browser.この関数を使うことで、ユーザーのブラウザのURLからクエリパラメーター（クエリ文字列内の情報）を取得できます。")
+
+#手順
+#1
+    st.header('1.Instructions')
+    st.markdown('''
+    In the above URL bar of your internet browser, append the following:
+    `?name=Jack&surname=Beanstalk`
+    after the base URL `http://share.streamlit.io/dataprofessor/st.experimental_get_query_params/`
+    such that it becomes 
+    http://share.streamlit.io/dataprofessor/st.experimental_get_query_params/?firstname=Jack&surname=Beanstalk`
+''')
+#2
+st.header('2.Contents of st.experimental_get_query_params')
+st.write(st.experimental_get_query_params())
+#3
+st.header('3.Retrieving and displaying information from the URL')
+
+
+query_prams = st.experimental_get_query_params()
+if 'firstname' in query_prams and 'surname'in query_prams:
+    firstname = st.experimental_get_query_params()['firstname'][0]
+    surname = st.experimental_get_query_params()['surname'][0]
+    st.write(f'Hello**{firstname}**, how are you?')
+
+
+#st.experimental_get_query_params()からクエリパラメーターを取得しています。
+# 'firstname'および'surname'という名前のクエリパラメーターを取得し、
+# それぞれの値をfirstnameとsurname変数に代入しています。
+
+
+
+
+st.write('-----------------------------')
+#24日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 24]''')
+st.markdown(''':gray[st.cache]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+
+st.title('st.cache')
+
+a0 = time()
+#time()関数を使って現在の時間をa0変数に保存しています。
+# この時刻は後で実行時間の計測に使用されます。
+st.subheader('Using st.cache')
+
+#大規模なDataFrameを生成するための2つのカスタム関数を定義します。
+#@st.cacheデコレーターを使用して、
+# 関数 load_data_a をキャッシュ対象にしています。
+@st.cache(suppress_st_warning=True)
+def load_data_a():
+    #カスタム関数 load_data_a を定義しています。
+    # この関数は大規模なデータフレームを生成します。
+    df = pd.DataFrame(
+        #関数内で、200万行×5列のランダムなデータを持つデータフレームを生成しています。
+        # これは大規模なデータセットです。
+        np.random.rand(2000000,5),
+        columns=['a', 'b', 'c', 'd', 'e']
+    )
+    return df
+st.write(load_data_a())
+a1 = time()
+#再度 time() 関数を使用して現在の時間を a1 変数に保存しています。
+# これは処理時間の計算に使用されます。
+st.info(a1-a0)
+#a0 と a1 の差分を計算して、Streamlitの st.info() を使用して
+# 処理時間を表示しています。
+# これにより、データ生成と表示にかかった時間が表示されます。
+
+
+st.write('-----------------------------')
+#25日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 25]''')
+st.markdown(''':gray[st.session_state]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+
+st.title('st.session_state')
+
+#重量をlbsからkgに、およびその逆に変換するためのカスタム関数を定義
+def lbs_to_kg():
+    st.session_state.kg = st.session_state.lbs/2.2046
+def kg_to_lbs():
+    st.session_state.lbs = st.session_state.kg*2.2046
+
+
+#st.number_inputを使用して重量値の数値入力を受け入れます。
+st.header('Input')
+col1, spacer, col2 = st.columns([2,1,2])
+with col1:
+    pounds = st.number_input("Pounds:", key = "lbs", on_change = lbs_to_kg)
+with col2:
+    kilogram = st.number_input("Kilograms:", key = "kg", on_change = kg_to_lbs)
+
+#上記2つのカスタム関数は、st.number_inputコマンドで作成した数値ボックスに
+# 数値が入力されるとすぐに呼び出されます
+
+#on_changeオプションで2つのカスタム関数lbs_to_kgとkg_to_lbsを指定している
+st.header('Output')
+st.write("st.session_state object:", st.session_state)
+
+
+
+st.write('-----------------------------')
+#26日目
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+st.markdown(''':rainbow[Day 26]''')
+st.markdown(''':gray[Bored APIアプリを構築してAPIを使用する方法]''')
+st.markdown("\
+            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:")
+
+
+st.title(':neutral_face: Bored API app')
+
+st.sidebar.header('Bored app')
+#st.selectboxコマンドによって、
+# アクティビティタイプに関するユーザー入力を受け入れます。
+selected_type = st.sidebar.selectbox('Select an activity type', ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"])
+suggested_activity_url = f'http://www.boredapi.com/api/activity?type={selected_type}'
+json_data = requests.get(suggested_activity_url)
+suggested_activity = json_data.json()
+#上記で選択されたアクティビティは、f-stringによってURLに追加され、
+#結果のJSONデータを取得するために使用されます。
+
+
+
+c1, c2 = st.columns(2)
+with c1:
+    with st.expander('About this app'):
+        st.write('Are you bored? The **Bored API app** provides suggestions on activities that you can do. This app is powered by the Bored API')
+with c2:
+    with st.expander('JSON data'):
+        st.write(suggested_activity)
+
+st.header('Suggested activity')
+st.info(suggested_activity['activity'])
+
+#最後に、Number of Participants、Type of Activity、Priceなど、
+# 提案するアクティビティの付随情報も表示します。
+
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.metric(label = 'Number of Participants', value=suggested_activity['participants'], delta='')
+with col2:
+    st.metric(label = 'Type of Activity', value=suggested_activity['type'].capitalize(), delta='')
+with col3:
+    st.metric(label='Price', value=suggested_activity['price'],delta='')
+
+st.write('-----------------------------')
+
+
+
+api_key = ' 026d1492891a46dcadedaee9c7886552'
+
+st.title('RECIPE suggestion app')
+
+st.sidebar.header('Recipe app')
+
+meal_type = st.sidebar.selectbox('Select a meal type', ["breakfast", "lunch", "dinner"])
+#Web APIにリクエストを送信するためのURLを作成します。
+spoonacular_url = f'https://api.spoonacular.com/recipes/random?apiKey={api_key}&number=1&tags={meal_type}'
+
+
+# APIからデータを取得
+response = requests.get(spoonacular_url)
+data = response.json()
+
+with st.expander('About this app'):
+    st.write('Looking for recipe ideas? The **Spoonacular Recipe Suggestion App** provides you with a random recipe based on your selected meal type.')
+
+with st.expander('Recipe data'):
+    st.write(data)
+
+st.header('Suggested Recipe')
+recipe = data['recipes'][0]
+st.info(f"Here's a suggested {meal_type} recipe: {recipe['title']}")
+
+col1, col2, col3 = st.columns(3)
+st.metric(label='Ready In Minutes', value=recipe['readyInMinutes'], delta='')
+st.metric(label='Serving Size', value=recipe['servings'], delta='')
+st.metric(label='Source URL', value=recipe['sourceUrl'], delta='')
